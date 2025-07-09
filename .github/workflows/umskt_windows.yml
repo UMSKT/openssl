@@ -46,7 +46,7 @@ jobs:
         run: |
           # Clone UMSKT's OpenSSL fork
           echo "Cloning UMSKT OpenSSL fork..."
-          git clone https://github.com/UMSKT/openssl.git --depth 1 openssl-1.1.1
+          git clone https://github.com/UMSKT/openssl.git --branch OpenSSL_1_1_1-stable --depth 1 openssl-1.1.1
 
       - name: Checkout and Compile OpenSSL 1.1.1 (32-bit)
         if: matrix.arch == 'x86'
