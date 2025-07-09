@@ -46,7 +46,7 @@ jobs:
         run: |
           # Clone UMSKT's OpenSSL fork
           echo "Cloning UMSKT OpenSSL fork..."
-          git clone https://github.com/UMSKT/openssl.git --depth 1 openssl-3.1.2
+          git clone https://github.com/UMSKT/openssl.git --depth 1 openssl-1.1.1
 
       - name: Checkout and Compile OpenSSL 1.1.1 (32-bit)
         if: matrix.arch == 'x86'
@@ -60,7 +60,7 @@ jobs:
           export PATH="/c/TDM-GCC-64/bin:$PATH"
           export MSYSTEM=MINGW32
           echo "Compiling 32-bit OpenSSL..."
-          cd openssl-3.1.2
+          cd openssl-1.1.1
           /usr/bin/perl Configure mingw --prefix=$(cygpath -u "$GITHUB_WORKSPACE")/OpenSSL-TDM-32 --openssldir=$(cygpath -u "$GITHUB_WORKSPACE")/OpenSSL-TDM-32 no-tests no-sse2 no-asm no-threads -DOPENSSL_DEV_NO_ATOMICS -mno-mmx -mno-sse -mno-sse2 -march=i686 -mtune=generic
           mingw32-make -j
           mingw32-make install_sw
@@ -78,7 +78,7 @@ jobs:
           export PATH="/c/TDM-GCC-64/bin:$PATH"
           export MSYSTEM=MINGW64
           echo "Compiling 64-bit OpenSSL..."
-          cd openssl-3.1.2
+          cd openssl-1.1.1
           /usr/bin/perl Configure mingw64 --prefix=$(cygpath -u "$GITHUB_WORKSPACE")/OpenSSL-TDM-64 --openssldir=$(cygpath -u "$GITHUB_WORKSPACE")/OpenSSL-TDM-64 no-tests no-asm -DOPENSSL_DEV_NO_ATOMICS -mno-mmx
           mingw32-make -j
           mingw32-make install_sw
